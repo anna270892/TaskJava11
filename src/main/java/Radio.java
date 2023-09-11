@@ -1,6 +1,6 @@
 public class Radio {
-    int currentRadioStationNumber; //номер текукщей радиостанции от 0 до 9
-    public int soundVolume; //громкость звука
+    private int currentRadioStationNumber; //номер текукщей радиостанции от 0 до 9
+    private int soundVolume; //громкость звука
 
     public int getCurrentRadioStationNumber() {
         return currentRadioStationNumber;
@@ -27,11 +27,9 @@ public class Radio {
     public void buttonNext() {
         if (currentRadioStationNumber == 9) {
             currentRadioStationNumber = 0;
-            return;
         } else {
             currentRadioStationNumber++;
         }
-
     }
 
 
@@ -39,13 +37,12 @@ public class Radio {
     public void buttonPrev() {
         if (currentRadioStationNumber == 0) {
             currentRadioStationNumber = 9;
-            return;
         } else {
             currentRadioStationNumber--;
         }
     }
 
-//клиент прибавляет/убавляет звук, если
+    //клиент прибавляет/убавляет звук, если
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < 0) {
             soundVolume = newCurrentVolume;
@@ -65,12 +62,12 @@ public class Radio {
         }
     }
 
-        public void soundVolumeLevelMax() {
-            if (soundVolume == 100) {
-                soundVolume = 100;
-            } else {
-                soundVolume++;
-            }
+    public void soundVolumeLevelMax() {
+        if (soundVolume == 100) {
+            soundVolume = 100;
+        } else {
+            soundVolume++;
         }
+    }
 }
 
