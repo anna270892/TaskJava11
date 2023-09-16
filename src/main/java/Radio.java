@@ -1,72 +1,89 @@
 public class Radio {
+    private int quantityOfRadioStations = 10; //!количество радиостанций по дефолту
     private int currentRadioStationNumber; //номер текукщей радиостанции от 0 до 9
-    private int soundVolume; //громкость звука
+    private int minNumberRadioStation; //минимальный номер радиостанции
+    private int maxNumberRadioStation; //максимальный номер радиостанции
+    private int currentVolume; //текущая громкость звука
+    private int minVolume; //минимальная громкость
+    private int maxVolume = 100; //максимальная громкость
+
+
+    public int getQuantityOfRadioStations() {
+        return quantityOfRadioStations;
+    }
 
     public int getCurrentRadioStationNumber() {
         return currentRadioStationNumber;
     }
 
-    public int getSoundVolume() {
-        return soundVolume;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
+    //Конструктор
+    public Radio(int quantityOfRadioStations) {
+        this.maxNumberRadioStation = quantityOfRadioStations - 1;
+    }
+
+    //Конструктор
+    public Radio() {
+        this.quantityOfRadioStations = quantityOfRadioStations;
+    }
 
     //Клиент выставляет номер радиостанции через прямое указание номера
     public void setTheRadioStationNumber(int newTheRadioStationNumber) {
-        if (newTheRadioStationNumber < 0) {
+        if (newTheRadioStationNumber < minNumberRadioStation) {
             return;
         }
-        if (newTheRadioStationNumber > 9) {
+        if (newTheRadioStationNumber > maxNumberRadioStation) {
             return;
         }
         currentRadioStationNumber = newTheRadioStationNumber;
     }
 
+    //клиент прибавляет/убавляет звук, если
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < minVolume) {
+            currentVolume = newCurrentVolume;
+        }
+        if (newCurrentVolume > maxVolume) {
+            currentVolume = newCurrentVolume;
+        }
+        currentVolume = newCurrentVolume;
+    }
 
-    //Клиент выставляет номер радиостанции значение 9 и нажмиает кнопку, включается 0 радиостанция, иначе следующая радиостанция
+
+    //Клиент выставляет номер радиостанции значение 4 и нажмиает кнопку, включается 0 радиостанция, иначе следующая радиостанция
     public void buttonNext() {
-        if (currentRadioStationNumber == 9) {
-            currentRadioStationNumber = 0;
+        if (currentRadioStationNumber == maxNumberRadioStation) {
+            currentRadioStationNumber = minNumberRadioStation;
         } else {
             currentRadioStationNumber++;
         }
     }
 
-
-    //Клиент выставляет номер радиостанции значение 0 и нажмиает кнопку, включается 9 радиостанция, иначе предыдущая радиостанция
+    //Клиент выставляет номер радиостанции значение 0 и нажмиает кнопку Prev, включается 4 радиостанция, иначе предыдущая радиостанция
     public void buttonPrev() {
-        if (currentRadioStationNumber == 0) {
-            currentRadioStationNumber = 9;
+        if (currentRadioStationNumber == minNumberRadioStation) {
+            currentRadioStationNumber = maxNumberRadioStation;
         } else {
             currentRadioStationNumber--;
         }
     }
 
-    //клиент прибавляет/убавляет звук, если
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
-            soundVolume = newCurrentVolume;
-        }
-        if (newCurrentVolume > 100) {
-            soundVolume = newCurrentVolume;
-        }
-        soundVolume = newCurrentVolume;
-    }
-
-
     public void soundVolumeLevelMin() {
-        if (soundVolume == 0) {
-            soundVolume = 0;
+        if (currentVolume == minVolume) {
+            currentVolume = minVolume;
         } else {
-            soundVolume--;
+            currentVolume--;
         }
     }
 
     public void soundVolumeLevelMax() {
-        if (soundVolume == 100) {
-            soundVolume = 100;
+        if (currentVolume == maxVolume) {
+            currentVolume = maxVolume;
         } else {
-            soundVolume++;
+            currentVolume++;
         }
     }
 }
