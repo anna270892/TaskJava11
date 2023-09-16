@@ -28,6 +28,7 @@ public class Radio {
     //Конструктор
     public Radio() {
         this.quantityOfRadioStations = quantityOfRadioStations;
+        this.maxNumberRadioStation = quantityOfRadioStations - 1;
     }
 
     //Клиент выставляет номер радиостанции через прямое указание номера
